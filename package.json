@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/geforcesong/movotowebpagetest#readme",
   "dependencies": {
-    "bluebird": "^3.5.1",
     "webpagetest": "^0.3.7"
   }
 }

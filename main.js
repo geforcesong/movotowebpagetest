@@ -1,12 +1,12 @@
 const WebPageTest = require('webpagetest');
 const config = require('./movoto.config.json');
 const URL_Home = 'https://www.movoto.com/';
+const {promisify} = require('util');
 const wpt = new WebPageTest(config.WebPageTestHost, config.APIKEY);
-const Promise = require('bluebird');
 
-const runTestAsync = Promise.promisify(wpt.runTest, { context: wpt });
-const getTestStatusAsync = Promise.promisify(wpt.getTestStatus, { context: wpt });
-const getTestResultsAsync = Promise.promisify(wpt.getTestResults, { context: wpt });
+wpt.runTestAsync = promisify(wpt.runTest);
+wpt.getTestStatusAsync = promisify(wpt.getTestStatus);
+wpt.getTestResultsAsync = promisify(wpt.getTestResults);
 
 
 var customMetrics = [
@@ -14,7 +14,7 @@ var customMetrics = [
     'return document.getElementsByTagName("iframe").length'
   ]
 
-// runTestAsync(URL_Home, {
+// wpt.runTestAsync(URL_Home, {
 //     custom: customMetrics.join('\n'),
 //     connectivity: 'Cable',
 //     location: 'Dulles:Chrome',
@@ -28,10 +28,10 @@ var customMetrics = [
 //     console.log(err);
 // })
 
-let testId = '171121_B2_c660b310005e5567175c7716fb552340';
-getTestStatusAsync(testId).then((ret)=>{
+let testId = '171121_DV_7b322f7c2cda41b89fe586995a36d886';
+wpt.getTestStatusAsync(testId).then((ret)=>{
     if(ret.statusCode === 200)
-        return getTestResultsAsync(testId)
+        return wpt.getTestResultsAsync(testId)
     throw new Error('Not finished');
 }).then((ret)=>{
     console.log(ret.data.average.firstView);
