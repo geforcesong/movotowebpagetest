@@ -1,0 +1,23 @@
+{
+  "name": "movotowebpagetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geforcesong/movotowebpagetest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geforcesong/movotowebpagetest/issues"
+  },
+  "homepage": "https://github.com/geforcesong/movotowebpagetest#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "webpagetest": "^0.3.7"
+  }
+}
